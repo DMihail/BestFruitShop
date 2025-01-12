@@ -4,6 +4,8 @@ export enum ProjectFonts {
   MontserratMedium = "Montserrat-Medium",
   MontserratSemiBold = "Montserrat-SemiBold",
   MontserratLight = "Montserrat-Light",
+  RobotoRegular = "Roboto-Regular",
+  RobotoBold = "Roboto-Bold",
 }
 
 export const Fonts = ProjectFonts;
