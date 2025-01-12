@@ -8,4 +8,4 @@ export enum ProjectFonts {
   RobotoBold = "Roboto-Bold",
 }
 
-export const Fonts = ProjectFonts;
+export const Fonts = { ...ProjectFonts };
