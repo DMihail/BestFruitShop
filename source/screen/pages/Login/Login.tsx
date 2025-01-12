@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 import { AuthFormLayout, FormTextInput } from "~/component";
 import { emailFromInputRule, passwordFromInputRule, Routes } from "~/constants";
+import { Preview } from "~/screen";
 
 type LoginForm = {
   email: string;
@@ -26,7 +27,7 @@ export const Login = () => {
   const navigation = useNavigation();
 
   const onSubmit = useCallback((data: LoginForm) => {
-    navigation.navigate(Routes.REGISTER);
+    navigation.navigate(Routes.PREVIEW);
   }, []);
 
   const handleLinkButtonPress = useCallback(() => {

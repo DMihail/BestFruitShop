@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { NotImplementedScreen } from "~/component";
 import { Routes } from "~/constants";
-import { Login, Register } from "~/screen";
+import { Login, Preview, Register } from "~/screen";
 import { RootStackParamList } from "~/types";
 
 declare global {
@@ -13,7 +13,7 @@ declare global {
 }
 
 const RootStack = createNativeStackNavigator<RootStackParamList>({
-  initialRouteName: Routes.LOGIN,
+  initialRouteName: Routes.PREVIEW,
   screenOptions: {
     headerShown: false,
   },
@@ -25,7 +25,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>({
       screen: Register,
     },
     [Routes.PREVIEW]: {
-      screen: NotImplementedScreen,
+      screen: Preview,
     },
     [Routes.HOME]: {
       screen: NotImplementedScreen,

@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     paddingHorizontal: 30,
     justifyContent: "space-between",
+    backgroundColor: colors.white,
   },
   button: {
     marginTop: 35,
