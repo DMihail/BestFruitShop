@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
 
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { DismissKeyboard } from "~/component";
 import { AppButton } from "~/component/AppButton";
 import { colors, Fonts } from "~/constants";
@@ -16,9 +18,10 @@ export const AuthLayout: FC<AuthLayoutType> = ({
   buttonPress,
   buttonTitle,
 }) => {
+  const { top: paddingTop } = useSafeAreaInsets();
   return (
     <DismissKeyboard>
-      <View style={styles.container}>
+      <View style={[styles.container, { paddingTop }]}>
         {children}
 
         <AppButton.LinkButton

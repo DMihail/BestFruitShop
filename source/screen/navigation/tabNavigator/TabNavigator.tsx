@@ -10,6 +10,7 @@ import {
 } from "~/assets";
 import { CustomTabButton, NotImplementedScreen } from "~/component";
 import { colors, Routes } from "~/constants";
+import { Home } from "~/screen";
 import { MainHeader, ShopHeader } from "~/screen/navigation/component";
 import { BottomTabStackParamList } from "~/types";
 
@@ -18,6 +19,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     paddingTop: 12,
     paddingBottom: 40,
+    shadowColor: colors.white,
+    shadowOffset: {
+      width: -4,
+      height: 17,
+    },
+    shadowOpacity: 0.75,
+    elevation: 17,
   },
 });
 
@@ -32,7 +40,7 @@ export const TabNavigator = createBottomTabNavigator<BottomTabStackParamList>({
   screenOptions: options,
   screens: {
     [Routes.HOME]: {
-      screen: NotImplementedScreen,
+      screen: Home,
       options: {
         tabBarIcon: ({ color }) => <TabBarHome color={color} />,
         header: () => <MainHeader />,

@@ -2,9 +2,11 @@ import React, { useCallback } from "react";
 
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 import { AuthFormLayout, FormTextInput } from "~/component";
-import { emailFromInputRule, passwordFromInputRule } from "~/constants";
+import { emailFromInputRule, passwordFromInputRule, Routes } from "~/constants";
+import { registerAction } from "~/store/user";
 
 type RegisterForm = {
   email: string;
@@ -25,12 +27,28 @@ export const Register = () => {
       confirmPassword: "",
     },
   });
+
+  const dispatch = useDispatch();
   const navigation = useNavigation();
-  const onSubmit = useCallback((data: RegisterForm) => console.log(data), []);
+
+  const onSubmit = useCallback(
+    ({ email, password }: RegisterForm) => {
+      dispatch(
+        registerAction({
+          email,
+          password,
+          onSuccess: () => {
+            navigation.navigate(Routes.PREVIEW);
+          },
+        })
+      );
+    },
+    [navigation, dispatch]
+  );
 
   const handleLinkButtonPress = useCallback(() => {
     navigation.goBack();
-  }, []);
+  }, [navigation]);
 
   return (
     <AuthFormLayout
