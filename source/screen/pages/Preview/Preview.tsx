@@ -34,13 +34,12 @@ export const Preview = () => {
   const [currentCard, setCurrentCard] = useState(0);
 
   const handleButtonPress = useCallback(() => {
-    console.log(currentCard);
-    setCurrentCard(currentCard + 1);
+    if (currentCard + 1 < previewInfo.length) setCurrentCard(currentCard + 1);
   }, [currentCard]);
 
   useEffect(() => {
-    if (currentCard === previewInfo.length) {
-      navigation.navigate(Routes.HOME);
+    if (currentCard === previewInfo.length - 1) {
+      navigation.navigate(Routes.ROOT);
     }
   }, [currentCard]);
 

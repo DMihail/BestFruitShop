@@ -6,3 +6,5 @@ export * from "./DismissKeyboard/DismissKeyboard";
 export * from "./NotImplementedScreen/NotImplementedScreen";
 export * from "./AuthFormLayout/AuthFormLayout";
 export * from "./AuthLayout/AuthLayout";
+export * from "./CustomTabButton/CustomTabButton";
+export * from "./PressableImage/PressableImage";

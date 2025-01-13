@@ -7,7 +7,7 @@ import { colors, Fonts } from "~/constants";
 export const NotImplementedScreen = () => {
   return (
     <View style={styles.container}>
-      <AppText styleText={styles.title}>Not ImplementedScreen Screen</AppText>
+      <AppText styleText={styles.title}>Not Implemented Screen</AppText>
     </View>
   );
 };
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: colors.white,
   },
   title: {
     marginTop: 36,

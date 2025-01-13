@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 export const TabBarPlus = (props: SvgProps) => {

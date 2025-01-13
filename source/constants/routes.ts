@@ -6,4 +6,6 @@ export enum Routes {
   BASKET = "Basket",
   SETTINGS = "Settings",
   EVENTS = "Events",
+  ORDER = "Order",
+  ROOT = "Root",
 }

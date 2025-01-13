@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import Svg, { G, Path, Defs, ClipPath, SvgProps } from "react-native-svg";
 
 export const TabBarSettings = (props: SvgProps) => {
@@ -6,7 +7,7 @@ export const TabBarSettings = (props: SvgProps) => {
     <Svg width={34} height={34} viewBox="0 0 34 34" fill="none" {...props}>
       <G
         clipPath="url(#clip0_33_41)"
-        stroke="silver"
+        stroke={props.color}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"

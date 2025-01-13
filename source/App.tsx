@@ -3,13 +3,13 @@ import { StatusBar } from "react-native";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { Navigation } from "~/screen/navigation";
+import { RootNavigator } from "~/screen/navigation";
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={"light-content"} />
-      <Navigation />
+      <RootNavigator />
     </SafeAreaProvider>
   );
 }
