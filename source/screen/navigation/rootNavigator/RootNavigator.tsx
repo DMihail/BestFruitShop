@@ -9,7 +9,7 @@ import { Login, Preview, Register } from "~/screen";
 import { TabNavigator } from "~/screen/navigation/tabNavigator/TabNavigator";
 
 const RootStack = createNativeStackNavigator({
-  initialRouteName: Routes.LOGIN,
+  initialRouteName: Routes.ROOT,
   screenOptions: {
     headerShown: false,
   },
