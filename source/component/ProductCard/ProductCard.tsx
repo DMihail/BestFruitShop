@@ -1,13 +1,23 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { AppText } from "~/component";
-import { colors, Fonts } from "~/constants";
+import { colors, Fonts, Routes } from "~/constants";
+import { HomeScreenNavigationProp } from "~/types";
 import { IProductType } from "~/types/dto/products";
 
 export const ProductCard: FC<IProductType> = ({ image, price, title }) => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
+  const handlePress = useCallback(
+    () => navigation.navigate(Routes.CART),
+    [navigation]
+  );
+
   return (
-    <Pressable>
+    <Pressable onPress={handlePress}>
       <ImageBackground source={{ uri: image }} style={styles.container}>
         <View>
           <AppText styleText={styles.title}>{title}</AppText>

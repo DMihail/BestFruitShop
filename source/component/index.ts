@@ -11,3 +11,4 @@ export * from "./PressableImage/PressableImage";
 export * from "./ProductCard/ProductCard";
 export * from "./AppLoader/AppLoader";
 export * from "./SearchTextInput/SearchTextInput";
+export * from "./CustomTabBar/CustomTabBar";

@@ -6,7 +6,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { ArrowLeftCircle, Search } from "~/assets";
 import { AppText, PressableImage } from "~/component";
-import { colors, Fonts } from "~/constants";
+import { colors, Fonts, Routes } from "~/constants";
+import { CartScreenNavigationProp } from "~/types";
 
 type ShopHeaderProps = {
   title: string;
@@ -14,9 +15,14 @@ type ShopHeaderProps = {
 
 export const ShopHeader: FC<ShopHeaderProps> = ({ title }) => {
   const { top: paddingTop } = useSafeAreaInsets();
-  const navigation = useNavigation();
+  const navigation = useNavigation<CartScreenNavigationProp>();
 
   const handleBackPress = useCallback(() => navigation.goBack(), []);
+
+  const handleSearchPress = useCallback(
+    () => navigation.navigate(Routes.HOME),
+    []
+  );
 
   return (
     <View style={[styles.container, { paddingTop }]}>
@@ -24,7 +30,7 @@ export const ShopHeader: FC<ShopHeaderProps> = ({ title }) => {
 
       <AppText styleText={styles.title}>{title}</AppText>
 
-      <PressableImage image={<Search />} />
+      <PressableImage image={<Search />} onPress={handleSearchPress} />
     </View>
   );
 };
@@ -33,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     paddingHorizontal: 30,
-    paddingVertical: 2,
+    paddingVertical: 10,
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: colors.white,

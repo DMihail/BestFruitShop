@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 10,
     backgroundColor: colors.white,
+    marginHorizontal: 30,
   },
   input: {
     paddingVertical: 14,

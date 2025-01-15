@@ -3,7 +3,7 @@ export enum Routes {
   REGISTER = "Register",
   PREVIEW = "Preview",
   HOME = "Home",
-  BASKET = "Basket",
+  CART = "Cart",
   SETTINGS = "Settings",
   EVENTS = "Events",
   ORDER = "Order",

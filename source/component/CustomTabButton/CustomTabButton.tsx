@@ -16,8 +16,9 @@ export const CustomTabButton = () => (
 
 const styles = StyleSheet.create({
   container: {
-    bottom: 8,
-    position: "absolute",
+    bottom: 30,
+    alignSelf: "center",
+    zIndex: 9999,
   },
   iconContainer: {
     backgroundColor: colors.yellow,
