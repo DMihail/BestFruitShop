@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
   },
   title: {
     color: colors.white,

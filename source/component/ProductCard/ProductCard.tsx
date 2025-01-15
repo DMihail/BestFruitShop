@@ -8,11 +8,13 @@ import { colors, Fonts, Routes } from "~/constants";
 import { HomeScreenNavigationProp } from "~/types";
 import { IProductType } from "~/types/dto/products";
 
-export const ProductCard: FC<IProductType> = ({ image, price, title }) => {
+export const ProductCard: FC<IProductType> = (props) => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
+  const { image, price, title } = props;
+
   const handlePress = useCallback(
-    () => navigation.navigate(Routes.CART),
+    () => navigation.navigate(Routes.CART, props),
     [navigation]
   );
 

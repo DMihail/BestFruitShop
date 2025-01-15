@@ -5,8 +5,9 @@ import { useDispatch } from "react-redux";
 
 import { SearchTextInput } from "~/component";
 import { colors } from "~/constants";
-import { ProductList } from "~/screen/pages/Home/component";
 import { getProductsAction } from "~/store/product/slice";
+
+import { ProductList } from "./component";
 
 export const Home = () => {
   const dispatch = useDispatch();

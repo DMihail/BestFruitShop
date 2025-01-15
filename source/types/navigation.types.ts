@@ -1,8 +1,9 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { StaticParamList } from "@react-navigation/native";
+import { RouteProp, StaticParamList } from "@react-navigation/native";
 
 import { Routes } from "~/constants";
 import { TabNavigator } from "~/screen/navigation";
+import { IProductType } from "~/types/dto";
 
 export type RootStackParamList = {
   [Routes.LOGIN]: undefined;
@@ -19,7 +20,7 @@ export type AuthStackParamList = {
 
 export type BottomTabStackParamList = {
   [Routes.HOME]: undefined;
-  [Routes.CART]: undefined;
+  [Routes.CART]: IProductType;
   [Routes.SETTINGS]: undefined;
   [Routes.EVENTS]: undefined;
   [Routes.ORDER]: undefined;
@@ -34,5 +35,10 @@ export type HomeScreenNavigationProp = BottomTabNavigationProp<
 
 export type CartScreenNavigationProp = BottomTabNavigationProp<
   BottomTabParamList,
+  Routes.CART
+>;
+
+export type CartScreenRouteProp = RouteProp<
+  BottomTabStackParamList,
   Routes.CART
 >;

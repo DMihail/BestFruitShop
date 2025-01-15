@@ -1,8 +1,4 @@
-export enum ProductSlug {
-  popular,
-  common,
-  best,
-}
+export type ProductSlug = "popular" | "common" | "best";
 
 export interface IProductType {
   title: string;

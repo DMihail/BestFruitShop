@@ -9,4 +9,5 @@ export const colors = {
   explosiveGreyTranslucent: "#C4C4C459",
   metallicGray: "#C0C0C0",
   transparent: "transparent",
+  wildWillowTranslucent: "#C0C0C059",
 };
