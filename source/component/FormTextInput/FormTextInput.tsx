@@ -31,6 +31,7 @@ export const FormTextInput: FC<InputProps> = ({
           value={value}
           autoCorrect={false}
           autoCapitalize={"none"}
+          placeholderTextColor={colors.blackTranslucent}
           style={[styles.input, isError && styles.error]}
           {...props}
         />
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     borderWidth: 1,
     borderColor: colors.transparent,
+    color: colors.black,
   },
   error: {
     borderColor: colors.red,

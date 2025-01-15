@@ -1,11 +1,18 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { configureStore } from "@reduxjs/toolkit";
+import { compose } from "redux";
 import { PersistConfig, persistReducer, persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
 
 import rootReducers, { StateType } from "~/store/root-reducer";
 
 import rootSaga from "./root-sagas";
+
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
 const persistConfig: PersistConfig<StateType> = {
   key: "root",
@@ -16,14 +23,15 @@ const persistConfig: PersistConfig<StateType> = {
 const sagaMiddleware = createSagaMiddleware();
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
+// @ts-ignore
+const composeEnhancers = compose;
 
 export const store = configureStore({
-  devTools: true,
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(sagaMiddleware),
+    }).concat(composeEnhancers(sagaMiddleware)),
 });
 
 sagaMiddleware.run(rootSaga);

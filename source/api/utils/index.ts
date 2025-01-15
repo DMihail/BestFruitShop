@@ -1,7 +1,8 @@
 import axios from "axios";
+import Config from "react-native-config";
 
 const instance = axios.create({
-  baseURL: "https://6785187d1ec630ca33a72e5a.mockapi.io/api/v1",
+  baseURL: `${Config.BASE_API}/api/v1`,
   timeout: 30 * 1000,
   responseType: "json",
   headers: {

@@ -1,47 +1,27 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { ImageSourcePropType, StyleSheet, View } from "react-native";
+import React, { useState, useCallback } from "react";
+import { StyleSheet, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
-import { Preview1, Preview2, Preview3 } from "~/assets";
 import { AppButton } from "~/component";
-import { colors, Fonts, Routes } from "~/constants";
+import { colors, Fonts, previewInfo, Routes } from "~/constants";
 
 import { CardInfo, Pagination } from "./component";
-
-export type PreviewInfo = {
-  text: string;
-  image: ImageSourcePropType;
-};
-
-const previewInfo = [
-  {
-    image: Preview1,
-    text: "sell and buy fruit from\n different places",
-  },
-  {
-    image: Preview2,
-    text: "get fresh and healthy fruit \nfor you",
-  },
-  {
-    image: Preview3,
-    text: "organic fruit that can be \nenjoyed by everyone",
-  },
-];
 
 export const Preview = () => {
   const navigation = useNavigation();
   const [currentCard, setCurrentCard] = useState(0);
 
   const handleButtonPress = useCallback(() => {
-    if (currentCard + 1 < previewInfo.length) setCurrentCard(currentCard + 1);
-  }, [currentCard]);
-
-  useEffect(() => {
-    if (currentCard === previewInfo.length - 1) {
-      navigation.navigate(Routes.ROOT);
-    }
-  }, [currentCard]);
+    setCurrentCard((prevState) => {
+      const nextCard =
+        prevState === previewInfo.length - 1 ? prevState : prevState + 1;
+      if (nextCard === previewInfo.length - 1) {
+        navigation.navigate(Routes.ROOT);
+      }
+      return nextCard;
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
@@ -52,6 +32,7 @@ export const Preview = () => {
         />
         <Pagination current={currentCard} count={previewInfo.length} />
       </View>
+
       <AppButton.LinkButton
         title={"Next"}
         textStyle={styles.button}

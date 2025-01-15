@@ -11,7 +11,7 @@ import { IProductType } from "~/types/dto/products";
 export const ProductCard: FC<IProductType> = (props) => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
-  const { image, price, title } = props;
+  const { imageUrl, price, title } = props;
 
   const handlePress = useCallback(
     () => navigation.navigate(Routes.CART, props),
@@ -20,7 +20,7 @@ export const ProductCard: FC<IProductType> = (props) => {
 
   return (
     <Pressable onPress={handlePress}>
-      <ImageBackground source={{ uri: image }} style={styles.container}>
+      <ImageBackground source={{ uri: imageUrl }} style={styles.container}>
         <View>
           <AppText styleText={styles.title}>{title}</AppText>
           <AppText styleText={styles.price}>${price} US</AppText>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontFamily: Fonts.MontserratSemiBold,
     textAlign: "center",
+    color: colors.black,
   },
   price: {
     marginTop: 5,
@@ -62,5 +63,6 @@ const styles = StyleSheet.create({
     lineHeight: 14,
     fontFamily: Fonts.RobotoRegular,
     textAlign: "center",
+    color: colors.black,
   },
 });

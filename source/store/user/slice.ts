@@ -3,11 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthAction, USER, UsersStateType, UserType } from "./types";
 
 const initialState: UsersStateType = {
-  user: {
-    data: null,
-    isLoading: false,
-    errors: "",
-  },
+  data: null,
+  isLoading: false,
+  errors: "",
 };
 
 export const usersSlice = createSlice({
@@ -15,29 +13,29 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     loginAction: (state: UsersStateType, action: PayloadAction<AuthAction>) => {
-      state.user.isLoading = true;
-      state.user.errors = "";
+      state.isLoading = true;
+      state.errors = "";
     },
     registerAction: (
       state: UsersStateType,
       action: PayloadAction<AuthAction>
     ) => {
-      state.user.isLoading = true;
-      state.user.errors = "";
+      state.isLoading = true;
+      state.errors = "";
     },
     getUserSuccessAction: (
       state: UsersStateType,
       { payload: user }: PayloadAction<UserType>
     ) => {
-      state.user.isLoading = false;
-      state.user.data = user;
+      state.isLoading = false;
+      state.data = user;
     },
     getUserErrorAction: (
       state: UsersStateType,
       { payload: error }: PayloadAction<string>
     ) => {
-      state.user.isLoading = false;
-      state.user.errors = error;
+      state.isLoading = false;
+      state.errors = error;
     },
   },
 });

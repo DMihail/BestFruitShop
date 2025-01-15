@@ -2,8 +2,7 @@ import React, { FC } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
 import { AppText } from "~/component";
-import { colors, Fonts } from "~/constants";
-import { PreviewInfo } from "~/screen";
+import { colors, Fonts, PreviewInfo } from "~/constants";
 
 export const CardInfo: FC<PreviewInfo> = ({ text, image }) => {
   return (

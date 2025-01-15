@@ -1,7 +1,6 @@
 import { all, fork } from "redux-saga/effects";
 
-import { watchProductSaga } from "~/store/product/saga";
-
+import { watchProductSaga } from "./product";
 import { watchUserSaga } from "./user";
 
 const rootSaga = function* () {

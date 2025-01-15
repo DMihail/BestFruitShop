@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
 
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { productsSelector } from "~/store/product";
 import { IProductType } from "~/types";
 
 export const ProductList = () => {
-  const data = useSelector(productsSelector);
+  const { isLoading, products } = useSelector(productsSelector);
 
   const renderCard = useCallback(
     ({ item }: ListRenderItemInfo<IProductType>) => {
@@ -17,15 +17,20 @@ export const ProductList = () => {
     []
   );
 
+  const ListEmptyComponent = useMemo(
+    () => (isLoading ? <AppLoader /> : null),
+    [isLoading]
+  );
+
   return (
     <FlatList
       numColumns={2}
       contentContainerStyle={styles.contentContainer}
       indicatorStyle={"black"}
       columnWrapperStyle={styles.columnWrapper}
-      data={data}
+      data={products}
       renderItem={renderCard}
-      ListEmptyComponent={<AppLoader />}
+      ListEmptyComponent={ListEmptyComponent}
       keyExtractor={(item) => item.id}
     />
   );
@@ -36,6 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   contentContainer: {
+    flexGrow: 1,
     gap: 20,
     paddingHorizontal: 30,
     paddingBottom: 20,

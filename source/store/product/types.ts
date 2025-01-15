@@ -4,17 +4,24 @@ export const PRODUCT = "product";
 export type PRODUCT = typeof PRODUCT; // Typescript line
 
 export type ProductStateType = {
-  products: IUserState;
+  products: IProductsState;
+  productsBySlug: IProductsBySlugState;
 };
 
-export type IUserState = {
+export type IProductsState = {
   data: Array<IProductType>;
   isLoading: boolean;
   errors: string;
 };
 
-export const GET_PRODUCTS = `${PRODUCT}/getProductsAction`;
-export type GET_PRODUCTS = typeof GET_PRODUCTS;
+export type IProductsBySlugState = {
+  data: Array<{ slug: string; products: IProductType }>;
+  isLoading: boolean;
+  errors: string;
+};
 
-export const REGISTER = `${PRODUCT}/registerAction`;
-export type REGISTER = typeof REGISTER;
+export const SEARCH_PRODUCTS = `${PRODUCT}/searchProductsAction`;
+export type SEARCH_PRODUCTS = typeof SEARCH_PRODUCTS;
+
+export const GET_PRODUCTS_BY_SLUG = `${PRODUCT}/getProductsBySlugAction`;
+export type GET_PRODUCTS_BY_SLUG = typeof GET_PRODUCTS_BY_SLUG;

@@ -5,7 +5,10 @@ import { useDispatch } from "react-redux";
 
 import { SearchTextInput } from "~/component";
 import { colors } from "~/constants";
-import { getProductsAction } from "~/store/product/slice";
+import {
+  getProductsBySlugAction,
+  searchProductsAction,
+} from "~/store/product/slice";
 
 import { ProductList } from "./component";
 
@@ -13,11 +16,12 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProductsAction({ title: "" }));
+    dispatch(searchProductsAction({ title: "" }));
+    dispatch(getProductsBySlugAction());
   }, [dispatch]);
 
   const onSearch = useCallback((title: string) => {
-    dispatch(getProductsAction({ title }));
+    dispatch(searchProductsAction({ title }));
   }, []);
 
   return (

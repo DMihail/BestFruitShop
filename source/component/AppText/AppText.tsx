@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { StyleProp, Text, TextStyle } from "react-native";
+
 import { Fonts } from "~/constants";
 
 type AppTextProps = {

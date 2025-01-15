@@ -10,12 +10,18 @@ export function* loginSaga({
   payload: { email, password, onSuccess },
 }: PayloadAction<AuthAction>) {
   try {
-    const response: AxiosResponse<UserType> = yield call(Api.auth.login, {
-      email,
-      password,
-    });
-    yield put(getUserSuccessAction(response.data));
-    onSuccess?.();
+    const response: AxiosResponse<Array<UserType>> = yield call(
+      Api.auth.login,
+      {
+        email,
+        password,
+      }
+    );
+    if (response.data.length) {
+      yield put(getUserSuccessAction(response.data[0]));
+      onSuccess?.();
+    }
+    throw Error("User not found");
   } catch (error) {
     yield put(getUserErrorAction(error));
   }

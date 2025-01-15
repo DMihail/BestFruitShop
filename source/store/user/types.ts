@@ -2,10 +2,6 @@ export const USER = "user";
 export type USER = typeof USER;
 
 export type UsersStateType = {
-  user: IUserState;
-};
-
-export type IUserState = {
   data: null | UserType;
   isLoading: boolean;
   errors: string;

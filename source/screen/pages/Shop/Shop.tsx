@@ -12,14 +12,16 @@ import { PriceCounter } from "./component";
 export const Shop = () => {
   const route = useRoute<CartScreenRouteProp>();
 
-  const { image, price, title } = route.params;
+  const { imageUrl, price, title } = route.params;
 
   const addToCardPress = useCallback(() => {}, []);
 
   return (
     <View style={styles.container}>
       <View>
-        <Image source={{ uri: image }} style={styles.image} />
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: imageUrl }} style={styles.image} />
+        </View>
 
         <AppText styleText={styles.title}>{title}</AppText>
       </View>
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  image: {
+  imageContainer: {
     alignSelf: "center",
     width: 258,
     height: 258,
@@ -54,6 +56,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 4,
     marginBottom: 18,
+    overflow: "hidden",
+    backgroundColor: colors.white,
+  },
+  image: {
+    resizeMode: "cover",
+    width: "100%",
+    height: "100%",
   },
   title: {
     fontSize: 15,
@@ -61,6 +70,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontFamily: Fonts.MontserratSemiBold,
     textAlign: "center",
+    color: colors.black,
   },
   price: {
     fontSize: 32,

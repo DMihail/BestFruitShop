@@ -1,7 +1,7 @@
 import auth from "./auth";
-import goods from "./goods";
+import products from "./products";
 
 export const Api = Object.freeze({
   auth,
-  goods,
+  products,
 });
