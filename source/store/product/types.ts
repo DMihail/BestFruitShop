@@ -11,6 +11,7 @@ export type ProductStateType = {
 export type IProducts = Array<IProductType>;
 
 export type IProductsState = {
+  searchTitle: string;
   data: IProducts;
   isLoading: boolean;
   errors: string;

@@ -1,10 +1,11 @@
 import { useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { SearchTextInput } from "~/component";
 import { colors } from "~/constants";
+import { isSearchProductsSelector } from "~/store/product";
 import {
   getProductsBySlugAction,
   searchProductsAction,
@@ -14,6 +15,7 @@ import { ProductList, SectionProductList } from "./component";
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const isSearch = useSelector(isSearchProductsSelector);
 
   useEffect(() => {
     dispatch(searchProductsAction({ title: "" }));
@@ -28,8 +30,7 @@ export const Home = () => {
     <View style={styles.container}>
       <SearchTextInput onSearch={onSearch} />
 
-      <ProductList />
-      {/*<SectionProductList />*/}
+      {isSearch ? <ProductList /> : <SectionProductList />}
     </View>
   );
 };

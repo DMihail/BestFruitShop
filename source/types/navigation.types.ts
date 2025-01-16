@@ -66,4 +66,6 @@ export type CartScreenNavigationProp = NativeStackScreenProps<
   Routes.CART
 >["navigation"];
 
-export type CartScreenRouteProp = RouteProp<CartStackParamList, Routes.SHOP>;
+export type ShoScreenRouteProp = RouteProp<CartStackParamList, Routes.SHOP>;
+
+export type CartScreenRouteProp = RouteProp<CartStackParamList, Routes.CART>;

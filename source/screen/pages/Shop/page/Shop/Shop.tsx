@@ -5,12 +5,12 @@ import { useRoute } from "@react-navigation/native";
 
 import { AppButton, AppText } from "~/component";
 import { colors, Fonts } from "~/constants";
-import { CartScreenRouteProp } from "~/types";
+import { ShoScreenRouteProp } from "~/types";
 
 import { PriceCounter } from "./component";
 
 export const Shop = () => {
-  const route = useRoute<CartScreenRouteProp>();
+  const route = useRoute<ShoScreenRouteProp>();
 
   const { imageUrl, price, title } = route.params;
 

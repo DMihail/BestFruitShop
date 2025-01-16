@@ -7,6 +7,8 @@ import { ListEmptyLoader, ProductCard } from "~/component";
 import { productsSelector } from "~/store/product";
 import { IProductType } from "~/types";
 
+const keyExtractor = ({ id }: IProductType) => `product-${id}`;
+
 export const ProductList = () => {
   const { isLoading, products } = useSelector(productsSelector);
 
@@ -26,7 +28,7 @@ export const ProductList = () => {
       data={products}
       renderItem={renderCard}
       ListEmptyComponent={<ListEmptyLoader isLoading={isLoading} />}
-      keyExtractor={(item) => item.id}
+      keyExtractor={keyExtractor}
     />
   );
 };

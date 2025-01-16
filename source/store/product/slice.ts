@@ -9,6 +9,7 @@ const initialState: ProductStateType = {
     errors: "",
   },
   products: {
+    searchTitle: "",
     data: [],
     isLoading: false,
     errors: "",
@@ -25,6 +26,7 @@ export const productSlice = createSlice({
     ) => {
       state.products.isLoading = true;
       state.products.errors = "";
+      state.products.searchTitle = action.payload.title;
     },
     searchProductsSuccessAction: (
       state: ProductStateType,

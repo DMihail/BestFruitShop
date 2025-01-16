@@ -21,6 +21,8 @@ const Section: FC<IProductBySlug> = memo(({ slug, products }) => {
   ) : null;
 });
 
+const keyExtractor = (_: IProductBySlug, index: number) => `section-${index}`;
+
 export const SectionProductList = () => {
   const { isLoading, products } = useSelector(productsBySlugSelector);
 
@@ -38,7 +40,7 @@ export const SectionProductList = () => {
       data={products}
       renderItem={renderSection}
       ListEmptyComponent={<ListEmptyLoader isLoading={isLoading} />}
-      keyExtractor={(_, index) => `section-${index}`}
+      keyExtractor={keyExtractor}
     />
   );
 };

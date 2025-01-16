@@ -16,3 +16,8 @@ export const productsBySlugSelector = createSelector(
     isLoading: data.productsBySlug.isLoading,
   })
 );
+
+export const isSearchProductsSelector = createSelector(
+  [selectProduct],
+  (data) => !!data.products.searchTitle
+);
