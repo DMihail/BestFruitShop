@@ -6,7 +6,7 @@ import { colors } from "~/constants";
 
 import { CartItem, CartSummary, ActionButtons } from "./component";
 
-const Cart = () => {
+export const Cart = () => {
   const addToCardPress = useCallback(() => {}, []);
 
   const itemDetails = [
@@ -16,18 +16,21 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-      <CartItem
-        imageUri="https://i.ibb.co/QdGt5gd/board.png"
-        quantity="1 Kg"
-        price="$998 US"
-      />
-      <ActionButtons />
+      <View>
+        <CartItem
+          imageUri="https://i.ibb.co/QdGt5gd/board.png"
+          quantity="1 Kg"
+          price="$998 US"
+        />
+        <ActionButtons />
+      </View>
+
       <CartSummary
         items={itemDetails}
         totalLabel="Total"
         totalAmount="$8.509 US"
       />
-      <AppButton.SolidButton title={"Add to Cart"} onPress={addToCardPress} />
+      <AppButton.SolidButton title={"Checkout"} onPress={addToCardPress} />
     </View>
   );
 };

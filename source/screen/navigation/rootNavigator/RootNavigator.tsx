@@ -1,40 +1,37 @@
-import {
-  createStaticNavigation,
-  StaticParamList,
-} from "@react-navigation/native";
+import React, { FC } from "react";
+
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useSelector } from "react-redux";
 
 import { Routes } from "~/constants";
-import { Login, Preview, Register } from "~/screen";
-import { TabNavigator } from "~/screen/navigation/tabNavigator/TabNavigator";
+import { isAuthorizedSelector } from "~/store/user/selectors";
 
-const RootStack = createNativeStackNavigator({
-  initialRouteName: Routes.ROOT,
-  screenOptions: {
-    headerShown: false,
-  },
-  screens: {
-    [Routes.LOGIN]: {
-      screen: Login,
-    },
-    [Routes.REGISTER]: {
-      screen: Register,
-    },
-    [Routes.PREVIEW]: {
-      screen: Preview,
-    },
-    [Routes.ROOT]: {
-      screen: TabNavigator,
-    },
-  },
-});
+import { AuthStack } from "../stackNavigator";
+import { TabNavigator } from "../tabNavigator";
 
-type RootStackParamList = StaticParamList<typeof RootStack>;
+const Stack = createNativeStackNavigator();
 
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
-}
+export const RootStack: FC = () => {
+  const isAuthorized = useSelector(isAuthorizedSelector);
 
-export const RootNavigator = createStaticNavigation(RootStack);
+  return (
+    <Stack.Navigator
+      initialRouteName={isAuthorized ? Routes.ROOT : Routes.AUTH}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name={Routes.AUTH} component={AuthStack} />
+      <Stack.Screen name={Routes.ROOT} component={TabNavigator} />
+    </Stack.Navigator>
+  );
+};
+
+export const RootNavigator = () => {
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
+};

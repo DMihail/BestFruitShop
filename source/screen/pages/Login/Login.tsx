@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { AuthFormLayout, FormTextInput } from "~/component";
 import { emailFromInputRule, passwordFromInputRule, Routes } from "~/constants";
 import { loginAction } from "~/store/user/slice";
+import { LoginNavigationProp } from "~/types";
 
 type LoginForm = {
   email: string;
@@ -26,7 +27,7 @@ export const Login = () => {
   });
 
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<LoginNavigationProp>();
 
   const onSubmit = useCallback(
     ({ email, password }: LoginForm) => {

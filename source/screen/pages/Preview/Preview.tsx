@@ -5,11 +5,12 @@ import { useNavigation } from "@react-navigation/native";
 
 import { AppButton } from "~/component";
 import { colors, Fonts, previewInfo, Routes } from "~/constants";
+import { RegisterNavigationPreview } from "~/types";
 
 import { CardInfo, Pagination } from "./component";
 
 export const Preview = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<RegisterNavigationPreview>();
   const [currentCard, setCurrentCard] = useState(0);
 
   const handleButtonPress = useCallback(() => {

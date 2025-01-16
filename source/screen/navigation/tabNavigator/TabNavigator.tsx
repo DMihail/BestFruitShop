@@ -12,9 +12,9 @@ import {
   NotImplementedScreen,
 } from "~/component";
 import { colors, Routes } from "~/constants";
-import { Cart, Home, Shop } from "~/screen";
+import { Home } from "~/screen";
 import { MainHeader, ShopHeader } from "~/screen/navigation/component";
-import { BottomTabStackParamList } from "~/types";
+import { ShopStack } from "~/screen/navigation/stackNavigator";
 
 const options = {
   tabBarActiveTintColor: colors.yellow,
@@ -22,44 +22,56 @@ const options = {
   tabBarLabel: "",
 };
 
-export const TabNavigator = createBottomTabNavigator<BottomTabStackParamList>({
-  tabBar: (props) => <CustomTabBar {...props} />,
-  screenOptions: options,
-  screens: {
-    [Routes.HOME]: {
-      screen: Home,
-      options: {
-        tabBarIcon: ({ color }) => <TabBarHome color={color} />,
-        header: () => <MainHeader />,
-      },
-    },
-    [Routes.EVENTS]: {
-      screen: NotImplementedScreen,
-      options: {
-        tabBarIcon: ({ color }) => <TabBarBell color={color} />,
-        header: () => <MainHeader />,
-      },
-    },
-    [Routes.ORDER]: {
-      screen: NotImplementedScreen,
-      options: {
-        tabBarIcon: () => <CustomTabButton />,
-        header: () => <MainHeader />,
-      },
-    },
-    [Routes.CART]: {
-      screen: Cart,
-      options: {
-        tabBarIcon: ({ color }) => <TabBarShoppingCard color={color} />,
-        header: () => <ShopHeader title={"Shop"} />,
-      },
-    },
-    [Routes.SETTINGS]: {
-      screen: NotImplementedScreen,
-      options: {
-        tabBarIcon: ({ color }) => <TabBarSettings color={color} />,
-        header: () => <ShopHeader title={"Cart"} />,
-      },
-    },
-  },
-});
+const Tab = createBottomTabNavigator();
+
+export const TabNavigator = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={options}
+      tabBar={(props) => <CustomTabBar {...props} />}
+    >
+      <Tab.Screen
+        name={Routes.HOME}
+        component={Home}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarHome color={color} />,
+          header: () => <MainHeader />,
+        }}
+      />
+      <Tab.Screen
+        name={Routes.EVENTS}
+        component={NotImplementedScreen}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarHome color={color} />,
+          header: () => <TabBarBell />,
+        }}
+      />
+      <Tab.Screen
+        name={Routes.ORDER}
+        component={NotImplementedScreen}
+        options={{
+          tabBarIcon: () => <CustomTabButton />,
+          header: () => <MainHeader />,
+        }}
+      />
+
+      <Tab.Screen
+        name={Routes.CART}
+        component={ShopStack}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarShoppingCard color={color} />,
+          headerShown: false,
+        }}
+      />
+
+      <Tab.Screen
+        name={Routes.SETTINGS}
+        component={NotImplementedScreen}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarSettings color={color} />,
+          header: () => <ShopHeader title={"Cart"} />,
+        }}
+      />
+    </Tab.Navigator>
+  );
+};

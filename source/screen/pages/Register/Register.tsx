@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { AuthFormLayout, FormTextInput } from "~/component";
 import { emailFromInputRule, passwordFromInputRule, Routes } from "~/constants";
 import { registerAction } from "~/store/user";
+import { RegisterNavigationProp } from "~/types";
 
 type RegisterForm = {
   email: string;
@@ -29,7 +30,7 @@ export const Register = () => {
   });
 
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<RegisterNavigationProp>();
 
   const onSubmit = useCallback(
     ({ email, password }: RegisterForm) => {
