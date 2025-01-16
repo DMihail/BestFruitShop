@@ -18,6 +18,8 @@ export const Cart = () => {
   const navigation = useNavigation<CartScreenNavigationProp>();
   const data = useSelector(cartSelector);
 
+  if (!data) return null;
+
   const { quantity = 0, price = 0, title = "", imageUrl = "" } = data || {};
 
   const productPrice = useMemo(() => quantity * +price, [quantity, price]);
