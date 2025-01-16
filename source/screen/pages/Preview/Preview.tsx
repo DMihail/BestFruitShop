@@ -14,12 +14,11 @@ export const Preview = () => {
 
   const handleButtonPress = useCallback(() => {
     setCurrentCard((prevState) => {
-      const nextCard =
-        prevState === previewInfo.length - 1 ? prevState : prevState + 1;
-      if (nextCard === previewInfo.length - 1) {
+      if (prevState === previewInfo.length - 1) {
         navigation.navigate(Routes.ROOT);
+        return prevState;
       }
-      return nextCard;
+      return prevState + 1;
     });
   }, [navigation]);
 

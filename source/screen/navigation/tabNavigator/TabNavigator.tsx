@@ -12,7 +12,7 @@ import {
   NotImplementedScreen,
 } from "~/component";
 import { colors, Routes } from "~/constants";
-import { Home, Shop } from "~/screen";
+import { Cart, Home, Shop } from "~/screen";
 import { MainHeader, ShopHeader } from "~/screen/navigation/component";
 import { BottomTabStackParamList } from "~/types";
 
@@ -48,7 +48,7 @@ export const TabNavigator = createBottomTabNavigator<BottomTabStackParamList>({
       },
     },
     [Routes.CART]: {
-      screen: Shop,
+      screen: Cart,
       options: {
         tabBarIcon: ({ color }) => <TabBarShoppingCard color={color} />,
         header: () => <ShopHeader title={"Shop"} />,
