@@ -1,81 +1,67 @@
-import { useCallback } from "react";
-import { ListRenderItemInfo, SectionList, StyleSheet } from "react-native";
+import { FC, memo, useCallback } from "react";
+import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
 
 import { useSelector } from "react-redux";
 
-import { AppText, ProductCard } from "~/component";
+import { AppText, ListEmptyLoader, ProductCard } from "~/component";
 import { colors, Fonts } from "~/constants";
-import { productsSelector } from "~/store/product";
-import { IProductType } from "~/types";
+import { PRODUCTS_SLUG } from "~/constants/product";
+import { IProductBySlug, productsBySlugSelector } from "~/store/product";
 
-const groupBy = (items: any[], key: string | number) =>
-  items.reduce(
-    (result: { [x: string]: any }, item: { [x: string]: string | number }) => ({
-      ...result,
-      [item[key]]: [...(result[item[key]] || []), item],
-    }),
-    {}
-  );
+const Section: FC<IProductBySlug> = memo(({ slug, products }) => {
+  return slug ? (
+    <View>
+      <AppText styleText={styles.sectionTitle}>{PRODUCTS_SLUG[slug]}</AppText>
+      <View style={styles.columnWrapper}>
+        {products?.map((item) => (
+          <ProductCard {...item} key={item.id} />
+        ))}
+      </View>
+    </View>
+  ) : null;
+});
 
 export const SectionProductList = () => {
-  const data = useSelector(productsSelector);
+  const { isLoading, products } = useSelector(productsBySlugSelector);
 
-  const renderCard = useCallback(
-    ({ item }: ListRenderItemInfo<IProductType>) => {
-      return <ProductCard {...item} />;
+  const renderSection = useCallback(
+    ({ item }: ListRenderItemInfo<IProductBySlug>) => {
+      return <Section {...item} />;
     },
     []
   );
 
-  const result = groupBy(data, "slug");
-
-  console.log(
-    Object.entries(result).map((item) => {
-      console.log(item);
-      return {
-        title: item[0],
-        data: item[1],
-      };
-    })
-  );
-
-  const array = Object.entries(result).map((item) => {
-    console.log(item);
-    return {
-      title: item[0],
-      data: item[1] as Array<IProductType>,
-    };
-  });
-
   return (
-    <SectionList
-      sections={array}
+    <FlatList
       contentContainerStyle={styles.contentContainer}
-      keyExtractor={(item, index) => item.id + index}
-      renderItem={renderCard}
-      renderSectionHeader={({ section: { title } }) => (
-        <AppText styleText={styles.header}>{title}</AppText>
-      )}
+      indicatorStyle={"black"}
+      data={products}
+      renderItem={renderSection}
+      ListEmptyComponent={<ListEmptyLoader isLoading={isLoading} />}
+      keyExtractor={(_, index) => `section-${index}`}
     />
   );
 };
 
 const styles = StyleSheet.create({
+  columnWrapper: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    rowGap: 22,
+  },
   contentContainer: {
+    flexGrow: 1,
     gap: 20,
     paddingHorizontal: 30,
     paddingBottom: 20,
   },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8,
-  },
-  header: {
+  sectionTitle: {
     fontSize: 17,
+    fontWeight: 600,
     lineHeight: 21,
-    fontFamily: Fonts.MontserratMedium,
+    fontFamily: Fonts.MontserratSemiBold,
     color: colors.cyanBlue,
+    marginBottom: 22,
   },
-  title: {},
 });

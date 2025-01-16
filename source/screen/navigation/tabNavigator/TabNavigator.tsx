@@ -15,6 +15,7 @@ import { colors, Routes } from "~/constants";
 import { Home } from "~/screen";
 import { MainHeader, ShopHeader } from "~/screen/navigation/component";
 import { ShopStack } from "~/screen/navigation/stackNavigator";
+import { BottomTabStackParamList } from "~/types";
 
 const options = {
   tabBarActiveTintColor: colors.yellow,
@@ -22,7 +23,7 @@ const options = {
   tabBarLabel: "",
 };
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomTabStackParamList>();
 
 export const TabNavigator = () => {
   return (
@@ -42,8 +43,8 @@ export const TabNavigator = () => {
         name={Routes.EVENTS}
         component={NotImplementedScreen}
         options={{
-          tabBarIcon: ({ color }) => <TabBarHome color={color} />,
-          header: () => <TabBarBell />,
+          tabBarIcon: ({ color }) => <TabBarBell color={color} />,
+          header: () => <MainHeader />,
         }}
       />
       <Tab.Screen
@@ -56,7 +57,7 @@ export const TabNavigator = () => {
       />
 
       <Tab.Screen
-        name={Routes.CART}
+        name={Routes.GROCERY}
         component={ShopStack}
         options={{
           tabBarIcon: ({ color }) => <TabBarShoppingCard color={color} />,

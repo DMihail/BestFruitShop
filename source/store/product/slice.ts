@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IProductType } from "~/types/dto/products";
-
-import { PRODUCT, ProductStateType } from "./types";
+import { IProducts, IProductsBySlug, PRODUCT, ProductStateType } from "./types";
 
 const initialState: ProductStateType = {
   productsBySlug: {
@@ -30,7 +28,7 @@ export const productSlice = createSlice({
     },
     searchProductsSuccessAction: (
       state: ProductStateType,
-      { payload: { data } }: PayloadAction<{ data: Array<IProductType> }>
+      { payload: { data } }: PayloadAction<{ data: IProducts }>
     ) => {
       state.products.isLoading = false;
       state.products.data = data;
@@ -46,6 +44,20 @@ export const productSlice = createSlice({
       state.products.isLoading = true;
       state.products.errors = "";
     },
+    getProductsBySlugSuccessAction: (
+      state: ProductStateType,
+      { payload: { data } }: PayloadAction<{ data: IProductsBySlug }>
+    ) => {
+      state.productsBySlug.isLoading = false;
+      state.productsBySlug.data = data;
+    },
+    getProductsBySlugErrorAction: (
+      state: ProductStateType,
+      { payload: error }: PayloadAction<string>
+    ) => {
+      state.productsBySlug.isLoading = false;
+      state.productsBySlug.errors = error;
+    },
   },
 });
 
@@ -54,6 +66,8 @@ export const {
   searchProductsSuccessAction,
   searchProductsErrorAction,
   getProductsBySlugAction,
+  getProductsBySlugSuccessAction,
+  getProductsBySlugErrorAction,
 } = productSlice.actions;
 
 export default productSlice.reducer;

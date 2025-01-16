@@ -1,5 +1,4 @@
 import React from "react";
-import { StatusBar } from "react-native";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
@@ -14,7 +13,6 @@ function App(): React.JSX.Element {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persist}>
         <SafeAreaProvider>
-          <StatusBar barStyle={"light-content"} />
           <RootNavigator />
         </SafeAreaProvider>
       </PersistGate>

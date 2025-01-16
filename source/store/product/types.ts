@@ -1,4 +1,4 @@
-import { IProductType } from "~/types/dto/products";
+import { IProductType, ProductSlug } from "~/types/dto/products";
 
 export const PRODUCT = "product";
 export type PRODUCT = typeof PRODUCT; // Typescript line
@@ -8,14 +8,23 @@ export type ProductStateType = {
   productsBySlug: IProductsBySlugState;
 };
 
+export type IProducts = Array<IProductType>;
+
 export type IProductsState = {
-  data: Array<IProductType>;
+  data: IProducts;
   isLoading: boolean;
   errors: string;
 };
 
+export type IProductBySlug = {
+  slug?: ProductSlug;
+  products?: IProducts;
+};
+
+export type IProductsBySlug = Array<IProductBySlug>;
+
 export type IProductsBySlugState = {
-  data: Array<{ slug: string; products: IProductType }>;
+  data: IProductsBySlug;
   isLoading: boolean;
   errors: string;
 };

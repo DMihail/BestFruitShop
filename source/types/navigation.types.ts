@@ -1,5 +1,5 @@
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { RouteProp } from "@react-navigation/native";
+import { NavigatorScreenParams, RouteProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Routes } from "~/constants";
@@ -18,7 +18,7 @@ export type AuthStackParamList = {
 
 export type BottomTabStackParamList = {
   [Routes.HOME]: undefined;
-  [Routes.CART]: undefined;
+  [Routes.GROCERY]: NavigatorScreenParams<CartStackParamList>;
   [Routes.SETTINGS]: undefined;
   [Routes.EVENTS]: undefined;
   [Routes.ORDER]: undefined;
@@ -66,7 +66,4 @@ export type CartScreenNavigationProp = NativeStackScreenProps<
   Routes.CART
 >["navigation"];
 
-export type CartScreenRouteProp = RouteProp<
-  BottomTabStackParamList,
-  Routes.CART
->;
+export type CartScreenRouteProp = RouteProp<CartStackParamList, Routes.SHOP>;

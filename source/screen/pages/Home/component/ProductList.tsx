@@ -1,9 +1,9 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
 
 import { useSelector } from "react-redux";
 
-import { AppLoader, ProductCard } from "~/component";
+import { ListEmptyLoader, ProductCard } from "~/component";
 import { productsSelector } from "~/store/product";
 import { IProductType } from "~/types";
 
@@ -17,11 +17,6 @@ export const ProductList = () => {
     []
   );
 
-  const ListEmptyComponent = useMemo(
-    () => (isLoading ? <AppLoader /> : null),
-    [isLoading]
-  );
-
   return (
     <FlatList
       numColumns={2}
@@ -30,7 +25,7 @@ export const ProductList = () => {
       columnWrapperStyle={styles.columnWrapper}
       data={products}
       renderItem={renderCard}
-      ListEmptyComponent={ListEmptyComponent}
+      ListEmptyComponent={<ListEmptyLoader isLoading={isLoading} />}
       keyExtractor={(item) => item.id}
     />
   );

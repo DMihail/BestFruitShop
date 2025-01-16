@@ -10,4 +10,5 @@ export enum Routes {
   EVENTS = "Events",
   ORDER = "Order",
   ROOT = "Root",
+  GROCERY = "Grocery",
 }

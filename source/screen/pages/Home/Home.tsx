@@ -10,7 +10,7 @@ import {
   searchProductsAction,
 } from "~/store/product/slice";
 
-import { ProductList } from "./component";
+import { ProductList, SectionProductList } from "./component";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ export const Home = () => {
       <SearchTextInput onSearch={onSearch} />
 
       <ProductList />
+      {/*<SectionProductList />*/}
     </View>
   );
 };

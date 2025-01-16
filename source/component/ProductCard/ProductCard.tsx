@@ -14,7 +14,11 @@ export const ProductCard: FC<IProductType> = (props) => {
   const { imageUrl, price, title } = props;
 
   const handlePress = useCallback(
-    () => navigation.navigate(Routes.SHOP, props),
+    () =>
+      navigation.navigate(Routes.GROCERY, {
+        screen: Routes.SHOP,
+        params: props,
+      }),
     [navigation, props]
   );
 
