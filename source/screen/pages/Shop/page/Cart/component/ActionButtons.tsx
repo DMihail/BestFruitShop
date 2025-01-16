@@ -5,10 +5,18 @@ import { Edit, Trash } from "~/assets";
 import { PressableImage } from "~/component";
 import { colors } from "~/constants";
 
-export const ActionButtons: FC = () => (
+type ActionButtonsProps = {
+  handleEditPress: () => void;
+  handleTrashPress: () => void;
+};
+
+export const ActionButtons: FC<ActionButtonsProps> = ({
+  handleEditPress,
+  handleTrashPress,
+}) => (
   <View style={styles.container}>
-    <PressableImage image={<Edit />} />
-    <PressableImage image={<Trash />} />
+    <PressableImage image={<Edit />} onPress={handleEditPress} />
+    <PressableImage image={<Trash />} onPress={handleTrashPress} />
   </View>
 );
 

@@ -3,7 +3,6 @@ import { NavigatorScreenParams, RouteProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Routes } from "~/constants";
-import { IProductType } from "~/types/dto";
 
 export type RootStackParamList = {
   [Routes.AUTH]: undefined;
@@ -25,7 +24,7 @@ export type BottomTabStackParamList = {
 };
 
 export type CartStackParamList = {
-  [Routes.SHOP]: IProductType;
+  [Routes.SHOP]: undefined;
   [Routes.CART]: undefined;
 };
 

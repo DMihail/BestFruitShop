@@ -17,7 +17,9 @@ export const ShopHeader: FC<ShopHeaderProps> = ({ title }) => {
   const { top: paddingTop } = useSafeAreaInsets();
   const navigation = useNavigation<CartScreenNavigationProp>();
 
-  const handleBackPress = useCallback(() => navigation.goBack(), []);
+  const handleBackPress = useCallback(() => {
+    navigation.goBack();
+  }, []);
 
   const handleSearchPress = useCallback(
     () => navigation.navigate(Routes.HOME),

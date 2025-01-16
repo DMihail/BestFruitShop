@@ -11,6 +11,7 @@ export const SolidButton: FC<CustomButtonType> = ({
   disabled,
   title,
   isLoading,
+  textStyle,
 }) => {
   return (
     <TouchableOpacity
@@ -21,7 +22,7 @@ export const SolidButton: FC<CustomButtonType> = ({
       {isLoading ? (
         <ActivityIndicator color={colors.white} size={"large"} />
       ) : (
-        <AppText styleText={styles.title}>{title}</AppText>
+        <AppText styleText={[styles.title, textStyle]}>{title}</AppText>
       )}
     </TouchableOpacity>
   );

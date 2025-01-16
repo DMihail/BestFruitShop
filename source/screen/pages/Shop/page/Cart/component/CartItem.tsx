@@ -6,7 +6,7 @@ import { colors, Fonts } from "~/constants";
 
 type CartItemProps = {
   imageUri: string;
-  quantity: string;
+  quantity: number;
   price: string;
 };
 

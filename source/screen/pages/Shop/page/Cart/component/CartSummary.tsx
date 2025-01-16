@@ -31,7 +31,7 @@ export const CartSummary: FC<CartSummaryProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 18,
+    marginBottom: 44,
   },
   row: {
     flexDirection: "row",
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     color: colors.black,
   },
   totalText: {
+    marginTop: 18,
     fontSize: 22,
     fontWeight: "400",
     lineHeight: 27,

@@ -2,25 +2,25 @@ import React, { FC, useCallback } from "react";
 import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 
 import { AppText } from "~/component";
 import { colors, Fonts, Routes } from "~/constants";
+import { addProductAction } from "~/store/cart";
 import { HomeScreenNavigationProp } from "~/types";
 import { IProductType } from "~/types/dto/products";
 
 export const ProductCard: FC<IProductType> = (props) => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
-
+  const dispatch = useDispatch();
   const { imageUrl, price, title } = props;
 
-  const handlePress = useCallback(
-    () =>
-      navigation.navigate(Routes.GROCERY, {
-        screen: Routes.SHOP,
-        params: props,
-      }),
-    [navigation, props]
-  );
+  const handlePress = useCallback(() => {
+    navigation.navigate(Routes.GROCERY, {
+      screen: Routes.SHOP,
+    });
+    dispatch(addProductAction(props));
+  }, [navigation, props]);
 
   return (
     <Pressable onPress={handlePress}>

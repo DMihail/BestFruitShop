@@ -1,34 +1,46 @@
-import React, { useCallback } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import React, { useCallback, useMemo } from "react";
+import { StyleSheet, View } from "react-native";
 
-import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
-import { AppButton, AppText } from "~/component";
-import { colors, Fonts } from "~/constants";
-import { ShoScreenRouteProp } from "~/types";
+import { AppButton } from "~/component";
+import { colors, Fonts, Routes } from "~/constants";
+import { ProductInfo } from "~/screen/pages/Shop/page/Shop/component/ProductInfo";
+import { cartSelector } from "~/store/cart";
+import { CartScreenNavigationProp } from "~/types";
 
 import { PriceCounter } from "./component";
 
 export const Shop = () => {
-  const route = useRoute<ShoScreenRouteProp>();
+  const navigation = useNavigation<CartScreenNavigationProp>();
 
-  const { imageUrl, price, title } = route.params;
+  const addToCardPress = useCallback(() => {
+    navigation.popTo(Routes.CART);
+  }, [navigation]);
 
-  const addToCardPress = useCallback(() => {}, []);
+  const data = useSelector(cartSelector);
+
+  if (!data) return null;
+
+  const { quantity, price, title, imageUrl } = data;
+
+  const ProductInfoContent = useMemo(
+    () => <ProductInfo imageUrl={imageUrl} title={title} />,
+    [imageUrl, title]
+  );
 
   return (
     <View style={styles.container}>
-      <View>
-        <View style={styles.imageContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.image} />
-        </View>
+      {ProductInfoContent}
 
-        <AppText styleText={styles.title}>{title}</AppText>
-      </View>
+      <PriceCounter price={Number(price) * quantity} quantity={quantity} />
 
-      <PriceCounter price={Number(price)} />
-
-      <AppButton.SolidButton title={"Add to Cart"} onPress={addToCardPress} />
+      <AppButton.SolidButton
+        title={"Add to Cart"}
+        onPress={addToCardPress}
+        textStyle={styles.buttonTitle}
+      />
     </View>
   );
 };
@@ -43,64 +55,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  imageContainer: {
-    alignSelf: "center",
-    width: 258,
-    height: 258,
-    borderRadius: 10,
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.25,
-    elevation: 4,
-    marginBottom: 18,
-    overflow: "hidden",
-    backgroundColor: colors.white,
-  },
-  image: {
-    resizeMode: "cover",
-    width: "100%",
-    height: "100%",
-  },
-  title: {
-    fontSize: 15,
-    fontWeight: 500,
-    lineHeight: 18,
-    fontFamily: Fonts.MontserratSemiBold,
-    textAlign: "center",
-    color: colors.black,
-  },
-  price: {
-    fontSize: 32,
-    fontWeight: 500,
-    lineHeight: 38,
-    fontFamily: Fonts.RobotoBold,
-    textAlign: "center",
-    color: colors.yellow,
-  },
-  priceToolContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 4,
-    paddingHorizontal: 2,
-    backgroundColor: colors.wildWillowTranslucent,
-    borderRadius: 20,
-  },
-  priceTool: {
-    width: 24,
-    height: 24,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  priceValue: {
-    fontSize: 15,
-    fontWeight: 400,
-    lineHeight: 18,
-    fontFamily: Fonts.RobotoRegular,
-    textAlign: "center",
-    color: colors.yellow,
-    minWidth: 50,
+  buttonTitle: {
+    fontSize: 17,
+    lineHeight: 22,
+    fontWeight: "700",
+    fontFamily: Fonts.MontserratBold,
   },
 });

@@ -5,7 +5,7 @@ import { IProductType } from "~/types";
 import { CART, CartStateType } from "./types";
 
 const initialState: CartStateType = {
-  data: [],
+  data: null,
 };
 
 export const cartSlice = createSlice({
@@ -16,24 +16,26 @@ export const cartSlice = createSlice({
       state: CartStateType,
       action: PayloadAction<IProductType>
     ) => {
-      state.data.push(action.payload);
+      state.data = { ...action.payload, quantity: 1 };
     },
-    removeProductAction: (
-      state: CartStateType,
-      action: PayloadAction<{ index: number }>
-    ) => {
-      state.data.splice(action.payload.index, 1);
+    removeProductAction: (state: CartStateType, action: PayloadAction) => {
+      state.data = null;
     },
-    updateProductAction: (
+    updateProductQuantityAction: (
       state: CartStateType,
-      action: PayloadAction<{ index: number; product: IProductType }>
+      action: PayloadAction<number>
     ) => {
-      state.data.splice(action.payload.index, 1, action.payload.product);
+      if (state.data) {
+        state.data.quantity = action.payload;
+      }
     },
   },
 });
 
-export const { addProductAction, removeProductAction, updateProductAction } =
-  cartSlice.actions;
+export const {
+  addProductAction,
+  removeProductAction,
+  updateProductQuantityAction,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
