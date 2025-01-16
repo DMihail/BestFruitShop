@@ -9,7 +9,12 @@ import { colors, Fonts, Routes } from "~/constants";
 import { cartSelector, removeProductAction } from "~/store/cart";
 import { CartScreenNavigationProp } from "~/types";
 
-import { CartItem, CartSummary, ActionButtons } from "./component";
+import {
+  CartItem,
+  CartSummary,
+  ActionButtons,
+  ChooseProduct,
+} from "./component";
 
 const DELIVERY_AMOUNT = 7.511;
 
@@ -17,8 +22,6 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<CartScreenNavigationProp>();
   const data = useSelector(cartSelector);
-
-  if (!data) return null;
 
   const { quantity = 0, price = 0, title = "", imageUrl = "" } = data || {};
 
@@ -49,6 +52,8 @@ export const Cart = () => {
     navigation.goBack();
     handleTrashPress();
   }, [navigation, handleTrashPress]);
+
+  if (!data) return <ChooseProduct />;
 
   return (
     <View style={styles.container}>
