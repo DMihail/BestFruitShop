@@ -1,4 +1,4 @@
-import React, { FC, useDeferredValue, useEffect, useState } from "react";
+import React, { forwardRef, useDeferredValue, useEffect, useState } from 'react';
 import { StyleSheet, TextInput, View } from "react-native";
 
 import { Search } from "~/assets";
@@ -8,7 +8,7 @@ type SearchTextInputProps = {
   onSearch: (v: string) => void;
 };
 
-export const SearchTextInput: FC<SearchTextInputProps> = ({ onSearch }) => {
+export const SearchTextInput = forwardRef( ({onSearch}: SearchTextInputProps , ref: React.Ref<TextInput>) => {
   const [text, onChangeText] = useState("");
   const deferredText = useDeferredValue(text);
 
@@ -19,6 +19,7 @@ export const SearchTextInput: FC<SearchTextInputProps> = ({ onSearch }) => {
   return (
     <View style={styles.container}>
       <TextInput
+        ref={ref}
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
@@ -28,7 +29,7 @@ export const SearchTextInput: FC<SearchTextInputProps> = ({ onSearch }) => {
       <Search width={25} height={25} style={styles.icon} />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
