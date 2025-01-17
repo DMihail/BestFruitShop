@@ -1,6 +1,6 @@
 import { takeEvery } from "redux-saga/effects";
 
-import { GET_PRODUCTS_BY_SLUG, SEARCH_PRODUCTS } from "~/store/product";
+import { GET_PRODUCTS_BY_SLUG, SEARCH_PRODUCTS } from "~/store";
 
 import { getProductsBySlugSaga } from "./getProductsBySlugSaga";
 import { searchProductsSaga } from "./searchProductsSaga";

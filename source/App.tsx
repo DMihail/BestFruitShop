@@ -5,7 +5,8 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { RootNavigator } from "~/screen/navigation";
-import { persist, store } from "~/store";
+
+import { persist, store } from "~/store/root";
 
 function App(): React.JSX.Element {
   return (

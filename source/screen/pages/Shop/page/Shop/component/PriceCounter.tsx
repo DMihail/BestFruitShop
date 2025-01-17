@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { ChevronDown, ChevronUp } from "~/assets";
 import { AppText, PressableImage } from "~/component";
 import { colors, Fonts } from "~/constants";
-import { updateProductQuantityAction } from "~/store/cart";
+import { updateProductQuantityAction } from "~/store";
 
 type PriceCounterProps = {
   price: number;

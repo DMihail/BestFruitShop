@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { AppText } from "~/component";
 import { colors, Fonts, Routes } from "~/constants";
-import { addProductAction } from "~/store/cart";
+import { addProductAction } from "~/store";
 import { HomeScreenNavigationProp } from "~/types";
 import { IProductType } from "~/types/dto/products";
 

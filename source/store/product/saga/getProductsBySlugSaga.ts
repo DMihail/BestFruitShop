@@ -6,7 +6,7 @@ import { PRODUCTS_SLUG } from "~/constants/product";
 import {
   getProductsBySlugErrorAction,
   getProductsBySlugSuccessAction,
-} from "~/store/product";
+} from "~/store";
 import { IProductType } from "~/types";
 
 export function* getProductsBySlugSaga() {

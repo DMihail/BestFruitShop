@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppButton } from "~/component";
 import { colors, Fonts, Routes } from "~/constants";
-import { cartSelector, removeProductAction } from "~/store/cart";
+import { cartSelector, removeProductAction } from "~/store";
 import { CartScreenNavigationProp } from "~/types";
 
 import {

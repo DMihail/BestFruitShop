@@ -9,8 +9,9 @@ type AuthFormLayoutProps = {
   children: React.ReactNode;
   linkButtonPress?: () => void;
   linkButtonTitle: string;
-  submitButtonPress?: () => void;
-  submitButtonTitle: string;
+  // submitButtonPress?: () => void;
+  // submitButtonTitle: string;
+  submitButton: React.ReactNode;
   formTitle: string;
   bottomButtonPress?: () => void;
   bottomButtonTitle: string;
@@ -19,8 +20,9 @@ type AuthFormLayoutProps = {
 export const AuthFormLayout: FC<AuthFormLayoutProps> = ({
   children,
   formTitle,
-  submitButtonPress,
-  submitButtonTitle,
+  submitButton,
+  // submitButtonPress,
+  // submitButtonTitle,
   linkButtonTitle,
   linkButtonPress,
   bottomButtonPress,
@@ -41,10 +43,11 @@ export const AuthFormLayout: FC<AuthFormLayoutProps> = ({
           />
         </View>
 
-        <AppButton.SolidButton
-          title={submitButtonTitle}
-          onPress={submitButtonPress}
-        />
+        {/*<AppButton.SolidButton*/}
+        {/*  title={submitButtonTitle}*/}
+        {/*  onPress={submitButtonPress}*/}
+        {/*/>*/}
+        {submitButton}
       </View>
     </AuthLayout>
   );

@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
 import { AppText, ProductCard } from "~/component";
 import { colors, Fonts } from "~/constants";
 import { PRODUCTS_SLUG } from "~/constants/product";
-import { IProductBySlug } from "~/store/product";
+import { IProductBySlug } from "~/store";
 import { IProductType } from "~/types";
 
 const keyExtractor = (_: IProductBySlug, index: number) =>

@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { AuthFormLayout, FormTextInput } from "~/component";
+import { AppButton, AuthFormLayout, FormTextInput } from "~/component";
 import { emailFromInputRule, passwordFromInputRule, Routes } from "~/constants";
-import { registerAction } from "~/store/user";
+import { registerAction, registerSelector } from "~/store";
 import { RegisterNavigationProp } from "~/types";
 
 type RegisterForm = {
@@ -31,6 +31,7 @@ export const Register = () => {
 
   const dispatch = useDispatch();
   const navigation = useNavigation<RegisterNavigationProp>();
+  const { isLoading, error } = useSelector(registerSelector);
 
   const onSubmit = useCallback(
     ({ email, password }: RegisterForm) => {
@@ -51,14 +52,25 @@ export const Register = () => {
     navigation.goBack();
   }, [navigation]);
 
+  const SubmitButton = useMemo(
+    () => (
+      <AppButton.SolidButton
+        title={"Sign Up"}
+        onPress={handleSubmit(onSubmit)}
+        isLoading={isLoading}
+        disabled={isLoading}
+      />
+    ),
+    [isLoading]
+  );
+
   return (
     <AuthFormLayout
       formTitle={"Creat Account"}
       linkButtonTitle={"Already have an account? Sign in"}
       linkButtonPress={handleLinkButtonPress}
-      submitButtonTitle={"Sign Up"}
-      submitButtonPress={handleSubmit(onSubmit)}
       bottomButtonTitle={"Sign up menu"}
+      submitButton={SubmitButton}
     >
       <FormTextInput
         control={control}
@@ -67,7 +79,7 @@ export const Register = () => {
         keyboardType={"email-address"}
         textContentType={"emailAddress"}
         autoComplete={"email"}
-        isError={!!errors.email}
+        isError={!!errors.email || !!error}
         rules={emailFromInputRule}
       />
 
@@ -78,7 +90,7 @@ export const Register = () => {
         textContentType={"password"}
         autoComplete={"password"}
         secureTextEntry
-        isError={!!errors.password}
+        isError={!!errors.password || !!error}
         rules={passwordFromInputRule}
       />
 
