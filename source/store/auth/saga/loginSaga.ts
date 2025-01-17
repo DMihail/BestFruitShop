@@ -17,7 +17,7 @@ export function* loginSaga({
     });
     if (response.data.length) {
       yield put(loginSuccessAction());
-      onSuccess?.();
+      return onSuccess?.();
     }
     throw Error("User not found");
   } catch (error) {
