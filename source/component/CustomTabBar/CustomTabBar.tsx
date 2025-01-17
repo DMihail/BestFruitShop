@@ -46,8 +46,6 @@ export const CustomTabBar: FC<BottomTabBarProps> = ({
     [navigation]
   );
 
-  console.log(keyboardStatus);
-
   return !keyboardStatus ?(
     <View style={[styles.container, { paddingBottom }]}>
       {state.routes.map((route, index) => {
@@ -86,7 +84,7 @@ export const CustomTabBar: FC<BottomTabBarProps> = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingVertical: 12,
     backgroundColor: colors.white,
     shadowOffset: { width: 0, height: -4 },

@@ -14,7 +14,7 @@ export const SearchTextInput: FC<SearchTextInputProps> = ({ onSearch }) => {
 
   useEffect(() => {
     onSearch(deferredText);
-  }, [deferredText]);
+  }, [deferredText, onSearch]);
 
   return (
     <View style={styles.container}>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 10,
     backgroundColor: colors.white,
-    marginHorizontal: 30,
+    marginHorizontal: 15,
   },
   input: {
     paddingVertical: 14,

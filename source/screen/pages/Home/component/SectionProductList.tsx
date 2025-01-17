@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
     rowGap: 20,
-    paddingHorizontal: 30,
     paddingBottom: 20,
   },
 });

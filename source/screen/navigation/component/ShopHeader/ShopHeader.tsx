@@ -19,11 +19,11 @@ export const ShopHeader: FC<ShopHeaderProps> = ({ title }) => {
 
   const handleBackPress = useCallback(() => {
     navigation.goBack();
-  }, []);
+  }, [navigation]);
 
   const handleSearchPress = useCallback(
     () => navigation.navigate(Routes.HOME),
-    []
+    [navigation]
   );
 
   return (
@@ -40,7 +40,7 @@ export const ShopHeader: FC<ShopHeaderProps> = ({ title }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingVertical: 10,
     justifyContent: "space-between",
     alignItems: "center",

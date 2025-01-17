@@ -20,12 +20,11 @@ export const SectionProductsBySlug: FC<IProductBySlug> = memo(
     );
 
     return slug ? (
-      <View>
+      <View style={styles.container}>
         <AppText styleText={styles.title}>{PRODUCTS_SLUG[slug]}</AppText>
         <FlatList
           numColumns={2}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.contentContainer}
           columnWrapperStyle={styles.columnWrapper}
           style={styles.list}
           data={products}
@@ -39,13 +38,14 @@ export const SectionProductsBySlug: FC<IProductBySlug> = memo(
 );
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 15,
+  },
   columnWrapper: {
     justifyContent: "space-between",
     gap: 22,
   },
   contentContainer: {
-    flexGrow: 1,
-    paddingHorizontal: 15,
     paddingBottom: 20,
   },
   title: {
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: Fonts.MontserratSemiBold,
     color: colors.cyanBlue,
+    marginBottom: 22
   },
   list: {
     gap: 22
