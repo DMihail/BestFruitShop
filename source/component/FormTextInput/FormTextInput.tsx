@@ -1,25 +1,21 @@
-import React, { FC } from "react";
-import { StyleSheet, TextInput, TextInputProps } from "react-native";
+/** @format */
 
-import { Control, Controller, RegisterOptions } from "react-hook-form";
+import React, { FC } from 'react';
+import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 
-import { colors, Fonts } from "~/constants";
+import { Controller, RegisterOptions } from 'react-hook-form';
+
+import { colors, Fonts } from '~/constants';
 
 export interface InputProps extends TextInputProps {
-  control: Control;
+  control: any;
   name: string;
   rules?: RegisterOptions;
   isError?: boolean;
   placeholder?: string;
 }
 
-export const FormTextInput: FC<InputProps> = ({
-  control,
-  rules,
-  name,
-  isError,
-  ...props
-}) => {
+export const FormTextInput: FC<InputProps> = ({ control, rules, name, isError, ...props }) => {
   return (
     <Controller
       control={control}
@@ -30,7 +26,7 @@ export const FormTextInput: FC<InputProps> = ({
           onChangeText={onChange}
           value={value}
           autoCorrect={false}
-          autoCapitalize={"none"}
+          autoCapitalize={'none'}
           placeholderTextColor={colors.blackTranslucent}
           style={[styles.input, isError && styles.error]}
           {...props}

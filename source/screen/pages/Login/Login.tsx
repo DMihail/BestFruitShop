@@ -1,13 +1,15 @@
-import React, { useCallback, useMemo } from "react";
+/** @format */
 
-import { useNavigation } from "@react-navigation/native";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useMemo } from 'react';
 
-import { AppButton, AuthFormLayout, FormTextInput } from "~/component";
-import { emailFromInputRule, passwordFromInputRule, Routes } from "~/constants";
-import { loginAction, loginSelector } from "~/store";
-import { LoginNavigationProp } from "~/types";
+import { useNavigation } from '@react-navigation/native';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { AppButton, AuthFormLayout, FormTextInput } from '~/component';
+import { emailFromInputRule, passwordFromInputRule, Routes } from '~/constants';
+import { loginAction, loginSelector } from '~/store';
+import { LoginNavigationProp } from '~/types';
 
 type LoginForm = {
   email: string;
@@ -21,8 +23,8 @@ export const Login = () => {
     formState: { errors },
   } = useForm<LoginForm>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -39,10 +41,10 @@ export const Login = () => {
           onSuccess: () => {
             navigation.navigate(Routes.ROOT);
           },
-        })
+        }),
       );
     },
-    [dispatch, navigation]
+    [dispatch, navigation],
   );
 
   const handleLinkButtonPress = useCallback(() => {
@@ -52,30 +54,30 @@ export const Login = () => {
   const SubmitButton = useMemo(
     () => (
       <AppButton.SolidButton
-        title={"Sign In"}
+        title={'Sign In'}
         onPress={handleSubmit(onSubmit)}
         isLoading={isLoading}
         disabled={isLoading}
       />
     ),
-    [isLoading]
+    [handleSubmit, isLoading, onSubmit],
   );
 
   return (
     <AuthFormLayout
-      formTitle={"Sign In"}
+      formTitle={'Sign In'}
       linkButtonTitle={"Don't registered yet? Sign up"}
       linkButtonPress={handleLinkButtonPress}
-      bottomButtonTitle={"Sign In menu"}
+      bottomButtonTitle={'Sign In menu'}
       submitButton={SubmitButton}
     >
       <FormTextInput
         control={control}
         placeholder="Email"
-        name={"email"}
-        keyboardType={"email-address"}
-        textContentType={"emailAddress"}
-        autoComplete={"email"}
+        name={'email'}
+        keyboardType={'email-address'}
+        textContentType={'emailAddress'}
+        autoComplete={'email'}
         isError={!!errors.email || !!error}
         rules={emailFromInputRule}
       />
@@ -83,9 +85,9 @@ export const Login = () => {
       <FormTextInput
         control={control}
         placeholder="Password"
-        name={"password"}
-        textContentType={"password"}
-        autoComplete={"password"}
+        name={'password'}
+        textContentType={'password'}
+        autoComplete={'password'}
         secureTextEntry
         isError={!!errors.password || !!error}
         rules={passwordFromInputRule}

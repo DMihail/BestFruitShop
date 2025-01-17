@@ -1,12 +1,13 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { configureStore } from "@reduxjs/toolkit";
-import { compose } from "redux";
-import { PersistConfig, persistReducer, persistStore } from "redux-persist";
-import createSagaMiddleware from "redux-saga";
+/** @format */
 
-import rootReducers, { StateType } from "~/store/root-reducer";
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, compose } from 'redux';
+import { persistStore } from 'redux-persist';
+import createSagaMiddleware from 'redux-saga';
 
-import rootSaga from "./root-sagas";
+import rootReducers from '~/store/root-reducer';
+
+import rootSaga from './root-sagas';
 
 declare global {
   interface Window {
@@ -14,15 +15,9 @@ declare global {
   }
 }
 
-const persistConfig: PersistConfig<StateType> = {
-  key: "root",
-  version: 1,
-  storage: AsyncStorage,
-};
-
 const sagaMiddleware = createSagaMiddleware();
 
-const persistedReducer = persistReducer(persistConfig, rootReducers);
+const persistedReducer = combineReducers(rootReducers);
 // @ts-ignore
 const composeEnhancers = compose;
 
