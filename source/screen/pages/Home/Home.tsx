@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { SearchTextInput } from "~/component";
 import { colors } from "~/constants";
-import { isSearchProductsSelector } from "~/store/product";
 import {
   getProductsBySlugAction,
   searchProductsAction,
-} from "~/store/product/slice";
+  isSearchProductsSelector,
+} from "~/store";
 
 import { ProductList, SectionProductList } from "./component";
 

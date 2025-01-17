@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { AuthFormLayout, FormTextInput } from "~/component";
+import { AppButton, AuthFormLayout, FormTextInput } from "~/component";
 import { emailFromInputRule, passwordFromInputRule, Routes } from "~/constants";
-import { loginAction } from "~/store/user/slice";
+import { loginAction, loginSelector } from "~/store";
 import { LoginNavigationProp } from "~/types";
 
 type LoginForm = {
@@ -28,6 +28,7 @@ export const Login = () => {
 
   const dispatch = useDispatch();
   const navigation = useNavigation<LoginNavigationProp>();
+  const { isLoading, error } = useSelector(loginSelector);
 
   const onSubmit = useCallback(
     ({ email, password }: LoginForm) => {
@@ -48,14 +49,25 @@ export const Login = () => {
     navigation.navigate(Routes.REGISTER);
   }, [navigation]);
 
+  const SubmitButton = useMemo(
+    () => (
+      <AppButton.SolidButton
+        title={"Sign In"}
+        onPress={handleSubmit(onSubmit)}
+        isLoading={isLoading}
+        disabled={isLoading}
+      />
+    ),
+    [isLoading]
+  );
+
   return (
     <AuthFormLayout
       formTitle={"Sign In"}
       linkButtonTitle={"Don't registered yet? Sign up"}
       linkButtonPress={handleLinkButtonPress}
-      submitButtonTitle={"Sign In"}
-      submitButtonPress={handleSubmit(onSubmit)}
       bottomButtonTitle={"Sign In menu"}
+      submitButton={SubmitButton}
     >
       <FormTextInput
         control={control}
@@ -64,7 +76,7 @@ export const Login = () => {
         keyboardType={"email-address"}
         textContentType={"emailAddress"}
         autoComplete={"email"}
-        isError={!!errors.email}
+        isError={!!errors.email || !!error}
         rules={emailFromInputRule}
       />
 
@@ -75,7 +87,7 @@ export const Login = () => {
         textContentType={"password"}
         autoComplete={"password"}
         secureTextEntry
-        isError={!!errors.password}
+        isError={!!errors.password || !!error}
         rules={passwordFromInputRule}
       />
     </AuthFormLayout>

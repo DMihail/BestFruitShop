@@ -1,10 +1,10 @@
 import { all, fork } from "redux-saga/effects";
 
+import { watchAuthSaga } from "./auth";
 import { watchProductSaga } from "./product";
-import { watchUserSaga } from "./user";
 
 const rootSaga = function* () {
-  yield all([fork(watchUserSaga)]);
+  yield all([fork(watchAuthSaga)]);
   yield all([fork(watchProductSaga)]);
 };
 

@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import { ListEmptyLoader, ProductCard } from "~/component";
-import { productsSelector } from "~/store/product";
+import { productsSelector } from "~/store";
 import { IProductType } from "~/types";
 
 const keyExtractor = ({ id }: IProductType) => `product-${id}`;

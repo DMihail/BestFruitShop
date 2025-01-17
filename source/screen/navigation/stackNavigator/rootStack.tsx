@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Routes } from "~/constants";
 import { TabNavigator } from "~/screen/navigation";
 import { AuthStack } from "~/screen/navigation/stackNavigator/authStack";
-import { isAuthorizedSelector } from "~/store/user/selectors";
+import { isAuthorizedSelector } from "~/store";
 import { RootStackParamList } from "~/types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

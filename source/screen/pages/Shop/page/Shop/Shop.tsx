@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { AppButton } from "~/component";
 import { colors, Fonts, Routes } from "~/constants";
 import { ProductInfo } from "~/screen/pages/Shop/page/Shop/component/ProductInfo";
-import { cartSelector } from "~/store/cart";
+import { cartSelector } from "~/store";
 import { CartScreenNavigationProp } from "~/types";
 
 import { PriceCounter } from "./component";

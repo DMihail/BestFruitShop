@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import { ListEmptyLoader } from "~/component";
-import { IProductBySlug, productsBySlugSelector } from "~/store/product";
+import { IProductBySlug, productsBySlugSelector } from "~/store";
 
 import { SectionProductsBySlug } from "./SectionProductsBySlug";
 

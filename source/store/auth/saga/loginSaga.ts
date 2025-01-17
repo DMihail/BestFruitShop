@@ -3,26 +3,24 @@ import { AxiosResponse } from "axios";
 import { put, call } from "redux-saga/effects";
 
 import { Api } from "~/api";
-import { getUserErrorAction, getUserSuccessAction } from "~/store/user/slice";
-import { AuthAction, UserType } from "~/store/user/types";
+import { loginErrorAction, loginSuccessAction } from "~/store/auth/slice";
+import { AuthAction } from "~/store/auth/types";
+import { IUser } from "~/types";
 
 export function* loginSaga({
   payload: { email, password, onSuccess },
 }: PayloadAction<AuthAction>) {
   try {
-    const response: AxiosResponse<Array<UserType>> = yield call(
-      Api.auth.login,
-      {
-        email,
-        password,
-      }
-    );
+    const response: AxiosResponse<Array<IUser>> = yield call(Api.auth.login, {
+      email,
+      password,
+    });
     if (response.data.length) {
-      yield put(getUserSuccessAction(response.data[0]));
+      yield put(loginSuccessAction());
       onSuccess?.();
     }
     throw Error("User not found");
   } catch (error) {
-    yield put(getUserErrorAction(error));
+    yield put(loginErrorAction(error));
   }
 }
