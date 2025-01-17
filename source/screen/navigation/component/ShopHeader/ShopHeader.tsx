@@ -22,7 +22,7 @@ export const ShopHeader: FC<ShopHeaderProps> = ({ title }) => {
   }, [navigation]);
 
   const handleSearchPress = useCallback(
-    () => navigation.navigate(Routes.HOME),
+    () => navigation.navigate(Routes.HOME, {isSearch: true}),
     [navigation]
   );
 

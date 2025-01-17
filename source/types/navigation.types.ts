@@ -1,4 +1,4 @@
-import { NavigatorScreenParams } from "@react-navigation/native";
+import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Routes } from "~/constants";
@@ -15,7 +15,7 @@ export type AuthStackParamList = {
 };
 
 export type BottomTabStackParamList = {
-  [Routes.HOME]: undefined;
+  [Routes.HOME]: {isSearch: boolean} | undefined ;
   [Routes.GROCERY]: NavigatorScreenParams<CartStackParamList>;
   [Routes.SETTINGS]: undefined;
   [Routes.EVENTS]: undefined;
@@ -51,3 +51,6 @@ export type CartScreenNavigationProp = NativeStackScreenProps<
   BottomTabStackParamList & CartStackParamList,
   Routes.CART
 >["navigation"];
+
+export type HomeScreenRouteProp = RouteProp<BottomTabStackParamList, Routes.HOME>;
+
