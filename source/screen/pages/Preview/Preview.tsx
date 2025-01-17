@@ -16,7 +16,12 @@ export const Preview = () => {
   const handleButtonPress = useCallback(() => {
     setCurrentCard((prevState) => {
       if (prevState === previewInfo.length - 1) {
-        navigation.navigate(Routes.ROOT);
+                navigation.reset({
+            index: 1,
+            routes: [
+                { name: Routes.ROOT },
+            ],
+        });
         return prevState;
       }
       return prevState + 1;

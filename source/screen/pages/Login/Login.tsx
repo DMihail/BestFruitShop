@@ -1,15 +1,15 @@
 /** @format */
 
-import React, { useCallback, useMemo } from 'react';
+import React, {useCallback, useMemo} from 'react';
 
-import { useNavigation } from '@react-navigation/native';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
+import {useDispatch, useSelector} from 'react-redux';
 
-import { AppButton, AuthFormLayout, FormTextInput } from '~/component';
-import { emailFromInputRule, passwordFromInputRule, Routes } from '~/constants';
-import { loginAction, loginSelector } from '~/store';
-import { LoginNavigationProp } from '~/types';
+import {AppButton, AuthFormLayout, FormTextInput} from '~/component';
+import {emailFromInputRule, passwordFromInputRule, Routes} from '~/constants';
+import {loginAction, loginSelector} from '~/store';
+import {LoginNavigationProp} from '~/types';
 
 type LoginForm = {
   email: string;
@@ -39,7 +39,12 @@ export const Login = () => {
           email,
           password,
           onSuccess: () => {
-            navigation.navigate(Routes.ROOT);
+            navigation.reset({
+                index: 1,
+                routes: [
+                    { name: Routes.ROOT },
+                ],
+            });
           },
         }),
       );
