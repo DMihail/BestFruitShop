@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -21,7 +21,7 @@ export const AuthLayout: FC<AuthLayoutType> = ({
   const { top: paddingTop } = useSafeAreaInsets();
   return (
     <DismissKeyboard>
-      <View style={[styles.container, { paddingTop }]}>
+      <ScrollView contentContainerStyle={[styles.container, { paddingTop }]}>
         {children}
 
         <AppButton.LinkButton
@@ -29,7 +29,7 @@ export const AuthLayout: FC<AuthLayoutType> = ({
           textStyle={styles.button}
           onPress={buttonPress}
         />
-      </View>
+      </ScrollView>
     </DismissKeyboard>
   );
 };
