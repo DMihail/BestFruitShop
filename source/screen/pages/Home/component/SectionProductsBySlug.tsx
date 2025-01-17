@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
 
 import { AppText, ProductCard } from "~/component";
-import { colors, Fonts } from "~/constants";
+import { colors, Fonts, paddingHorizontal } from '~/constants';
 import { PRODUCTS_SLUG } from "~/constants/product";
 import { IProductBySlug } from "~/store";
 import { IProductType } from "~/types";
@@ -39,7 +39,7 @@ export const SectionProductsBySlug: FC<IProductBySlug> = memo(
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 15,
+    paddingHorizontal,
   },
   columnWrapper: {
     justifyContent: "space-between",

@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
 import { AppButton } from "~/component";
-import { colors, Fonts, Routes } from "~/constants";
+import { colors, Fonts, paddingHorizontal, Routes } from '~/constants';
 import { ProductInfo } from "~/screen/pages/Shop/page/Shop/component/ProductInfo";
 import { cartSelector } from "~/store";
 import { CartScreenNavigationProp } from "~/types";
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    paddingHorizontal: 30,
+    paddingHorizontal,
     paddingBottom: 50,
     paddingTop: 100,
     justifyContent: "space-between",

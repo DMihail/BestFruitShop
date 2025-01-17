@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { DismissKeyboard } from "~/component";
 import { AppButton } from "~/component/AppButton";
-import { colors, Fonts } from "~/constants";
+import { colors, Fonts, paddingHorizontal } from '~/constants';
 
 type AuthLayoutType = {
   children: React.ReactNode;
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     paddingBottom: 40,
-    paddingHorizontal: 30,
+    paddingHorizontal,
     justifyContent: "space-between",
     backgroundColor: colors.white,
   },

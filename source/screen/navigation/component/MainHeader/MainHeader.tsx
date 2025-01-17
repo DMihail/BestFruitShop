@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { AppleLogo, ProfileLogo } from "~/assets/image/common";
 import { AppText, PressableImage } from "~/component";
-import { colors, Fonts } from "~/constants";
+import { colors, Fonts, paddingHorizontal } from '~/constants';
 
 export const MainHeader = () => {
   const { top: paddingTop } = useSafeAreaInsets();
@@ -27,7 +27,7 @@ export const MainHeader = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingHorizontal: 15,
+    paddingHorizontal,
     paddingVertical: 2,
     justifyContent: "space-between",
     alignItems: "center",

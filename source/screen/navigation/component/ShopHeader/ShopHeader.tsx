@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { ArrowLeftCircle, Search } from "~/assets";
 import { AppText, PressableImage } from "~/component";
-import { colors, Fonts, Routes } from "~/constants";
+import { colors, Fonts, paddingHorizontal, Routes } from '~/constants';
 import { CartScreenNavigationProp } from "~/types";
 
 type ShopHeaderProps = {
@@ -40,7 +40,7 @@ export const ShopHeader: FC<ShopHeaderProps> = ({ title }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingHorizontal: 15,
+    paddingHorizontal,
     paddingVertical: 10,
     justifyContent: "space-between",
     alignItems: "center",

@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 4,
     marginBottom: 18,
-    overflow: "hidden",
     backgroundColor: colors.white,
   },
   image: {
