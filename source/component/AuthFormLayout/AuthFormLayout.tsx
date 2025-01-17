@@ -9,8 +9,6 @@ type AuthFormLayoutProps = {
   children: React.ReactNode;
   linkButtonPress?: () => void;
   linkButtonTitle: string;
-  // submitButtonPress?: () => void;
-  // submitButtonTitle: string;
   submitButton: React.ReactNode;
   formTitle: string;
   bottomButtonPress?: () => void;
@@ -21,8 +19,6 @@ export const AuthFormLayout: FC<AuthFormLayoutProps> = ({
   children,
   formTitle,
   submitButton,
-  // submitButtonPress,
-  // submitButtonTitle,
   linkButtonTitle,
   linkButtonPress,
   bottomButtonPress,
@@ -43,10 +39,6 @@ export const AuthFormLayout: FC<AuthFormLayoutProps> = ({
           />
         </View>
 
-        {/*<AppButton.SolidButton*/}
-        {/*  title={submitButtonTitle}*/}
-        {/*  onPress={submitButtonPress}*/}
-        {/*/>*/}
         {submitButton}
       </View>
     </AuthLayout>
@@ -57,11 +49,9 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: "space-between",
-    marginBottom: 60,
   },
   content: {
     paddingTop: 100,
-    paddingBottom: 60,
   },
   inputContainer: {
     gap: 36,
