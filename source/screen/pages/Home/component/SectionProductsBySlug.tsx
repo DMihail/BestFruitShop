@@ -25,8 +25,9 @@ export const SectionProductsBySlug: FC<IProductBySlug> = memo(
         <FlatList
           numColumns={2}
           showsHorizontalScrollIndicator={false}
-          columnWrapperStyle={styles.columnStyle}
-          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
+          columnWrapperStyle={styles.columnWrapper}
+          style={styles.list}
           data={products}
           scrollEnabled={false}
           renderItem={renderCard}
@@ -38,12 +39,14 @@ export const SectionProductsBySlug: FC<IProductBySlug> = memo(
 );
 
 const styles = StyleSheet.create({
-  container: {
-    rowGap: 22,
-  },
-  columnStyle: {
+  columnWrapper: {
     justifyContent: "space-between",
-    rowGap: 22,
+    gap: 22,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    paddingHorizontal: 15,
+    paddingBottom: 20,
   },
   title: {
     fontSize: 17,
@@ -51,6 +54,8 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: Fonts.MontserratSemiBold,
     color: colors.cyanBlue,
-    marginBottom: 22,
   },
+  list: {
+    gap: 22
+  }
 });

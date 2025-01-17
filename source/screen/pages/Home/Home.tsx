@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { SearchTextInput } from "~/component";
+import { DismissKeyboard, SearchTextInput } from '~/component';
 import { colors } from "~/constants";
 import {
   getProductsBySlugAction,
@@ -24,14 +24,16 @@ export const Home = () => {
 
   const onSearch = useCallback((title: string) => {
     dispatch(searchProductsAction({ title }));
-  }, []);
+  }, [dispatch]);
 
   return (
+    <DismissKeyboard>
     <View style={styles.container}>
       <SearchTextInput onSearch={onSearch} />
 
       {isSearch ? <ProductList /> : <SectionProductList />}
     </View>
+    </DismissKeyboard>
   );
 };
 
