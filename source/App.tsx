@@ -1,12 +1,14 @@
-import React from "react";
+/** @format */
 
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+import React from 'react';
 
-import { RootNavigator } from "~/screen/navigation";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { persist, store } from "~/store/root";
+import { RootNavigator } from '~/screen/navigation';
+import { persist, store } from '~/store/root';
+import 'react-native-devsettings';
 
 function App(): React.JSX.Element {
   return (

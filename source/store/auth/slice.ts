@@ -1,6 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+/** @format */
 
-import { AUTH, AuthAction, AuthStateType } from "./types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { AUTH, AuthAction, AuthStateType } from './types';
 
 const initialState: AuthStateType = {
   isAuthorized: false,
@@ -22,34 +24,29 @@ export const authSlice = createSlice({
       state.login.isLoading = true;
       state.login.error = null;
     },
-    registerAction: (
-      state: AuthStateType,
-      action: PayloadAction<AuthAction>
-    ) => {
-      state.register.isLoading = true;
-      state.register.error = null;
-    },
     loginSuccessAction: (state: AuthStateType) => {
       state.isAuthorized = true;
       state.login.isLoading = false;
+      state.login.error = null;
     },
-    loginErrorAction: (
-      state: AuthStateType,
-      { payload: error }: PayloadAction<Error>
-    ) => {
+    loginErrorAction: (state: AuthStateType, { payload: error }: PayloadAction<Error>) => {
       state.login.isLoading = false;
       state.login.error = error;
     },
+
+    registerAction: (state: AuthStateType, action: PayloadAction<AuthAction>) => {
+      state.register.isLoading = true;
+      state.register.error = null;
+    },
+
     registerSuccessAction: (state: AuthStateType) => {
       state.isAuthorized = true;
-      state.login.isLoading = false;
+      state.register.error = null;
+      state.register.isLoading = false;
     },
-    registerErrorAction: (
-      state: AuthStateType,
-      { payload: error }: PayloadAction<Error>
-    ) => {
-      state.login.isLoading = false;
-      state.login.error = error;
+    registerErrorAction: (state: AuthStateType, { payload: error }: PayloadAction<Error>) => {
+      state.register.isLoading = false;
+      state.register.error = error;
     },
   },
 });

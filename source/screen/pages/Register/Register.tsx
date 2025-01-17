@@ -61,7 +61,7 @@ export const Register = () => {
         disabled={isLoading}
       />
     ),
-    [isLoading]
+    [handleSubmit, isLoading, onSubmit]
   );
 
   return (

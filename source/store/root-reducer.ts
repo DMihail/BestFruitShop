@@ -1,12 +1,21 @@
-import { combineReducers } from "redux";
+/** @format */
 
-import authReducer from "~/store/auth/slice";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { persistReducer } from 'redux-persist';
 
-import { AuthStateType } from "./auth";
-import { CartStateType } from "./cart";
-import cartReducer from "./cart/slice";
-import { ProductStateType } from "./product";
-import productReducer from "./product/slice";
+import authReducer from '~/store/auth/slice';
+
+import { AUTH, AuthStateType } from './auth';
+import { CartStateType } from './cart';
+import cartReducer from './cart/slice';
+import { ProductStateType } from './product';
+import productReducer from './product/slice';
+
+const persistConfig = {
+  key: AUTH,
+  storage: AsyncStorage,
+  whitelist: ['isAuthorized'],
+};
 
 export type StateType = {
   auth: AuthStateType;
@@ -14,10 +23,10 @@ export type StateType = {
   cart: CartStateType;
 };
 
-const rootReducers = combineReducers({
-  auth: authReducer,
+const rootReducers = {
+  auth: persistReducer(persistConfig, authReducer),
   products: productReducer,
   cart: cartReducer,
-});
+};
 
 export default rootReducers;
