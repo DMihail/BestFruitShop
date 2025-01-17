@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
+import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 
 import { useSelector } from "react-redux";
 
@@ -36,11 +36,12 @@ export const ProductList = () => {
 const styles = StyleSheet.create({
   columnWrapper: {
     justifyContent: "space-between",
+    gap: 22,
+marginBottom: 22
   },
   contentContainer: {
     flexGrow: 1,
-    gap: 20,
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingBottom: 20,
   },
 });

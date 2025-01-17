@@ -27,7 +27,7 @@ export const MainHeader = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingVertical: 2,
     justifyContent: "space-between",
     alignItems: "center",
