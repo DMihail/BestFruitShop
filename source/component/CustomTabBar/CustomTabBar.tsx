@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { colors } from "~/constants";
+import { colors, paddingHorizontal } from '~/constants';
 import { useKeyboard } from '~/hooks';
 
 export const CustomTabBar: FC<BottomTabBarProps> = ({
@@ -84,7 +84,7 @@ export const CustomTabBar: FC<BottomTabBarProps> = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingHorizontal: 15,
+    paddingHorizontal,
     paddingVertical: 12,
     backgroundColor: colors.white,
     shadowOffset: { width: 0, height: -4 },
