@@ -21,6 +21,7 @@ const options = {
   tabBarActiveTintColor: colors.yellow,
   tabBarInactiveTintColor: colors.metallicGray,
   tabBarLabel: "",
+  tabBarHideOnKeyboard: true,
 };
 
 const Tab = createBottomTabNavigator<BottomTabStackParamList>();

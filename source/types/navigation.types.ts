@@ -1,5 +1,4 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { NavigatorScreenParams, RouteProp } from "@react-navigation/native";
+import { NavigatorScreenParams } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Routes } from "~/constants";
@@ -28,18 +27,6 @@ export type CartStackParamList = {
   [Routes.CART]: undefined;
 };
 
-export type RootStackNavigationProps<T extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, T>;
-
-export type AuthStackNavigationProps<T extends keyof AuthStackParamList> =
-  NativeStackScreenProps<AuthStackParamList, T>;
-
-export type CartStackNavigationProps<T extends keyof CartStackParamList> =
-  NativeStackScreenProps<CartStackParamList, T>;
-
-export type BottomTabNavigationProps<T extends keyof BottomTabStackParamList> =
-  BottomTabScreenProps<BottomTabStackParamList, T>;
-
 export type LoginNavigationProp = NativeStackScreenProps<
   AuthStackParamList & RootStackParamList,
   Routes.LOGIN
@@ -64,7 +51,3 @@ export type CartScreenNavigationProp = NativeStackScreenProps<
   BottomTabStackParamList & CartStackParamList,
   Routes.CART
 >["navigation"];
-
-export type ShoScreenRouteProp = RouteProp<CartStackParamList, Routes.SHOP>;
-
-export type CartScreenRouteProp = RouteProp<CartStackParamList, Routes.CART>;
