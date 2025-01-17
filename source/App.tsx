@@ -8,7 +8,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { RootNavigator } from '~/screen/navigation';
 import { persist, store } from '~/store/root';
-import 'react-native-devsettings';
 
 function App(): React.JSX.Element {
   return (
